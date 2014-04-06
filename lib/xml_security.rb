@@ -67,7 +67,7 @@ module XMLSecurity
 
       # check for inclusive namespaces
       inclusive_namespaces = extract_inclusive_namespaces
-
+      puts self.to_s
       document = Nokogiri.parse(self.to_s)
 
       # create a working copy so we don't modify the original
