@@ -116,6 +116,10 @@ module XMLSecurity
       # signature method
       signature_algorithm     = algorithm(REXML::XPath.first(@working_copy, "//ds:SignatureMethod", {"ds"=>DSIG}))
 
+      puts "SIGNATURE: #{signature}"
+      puts "CANONSTRING: #{canon_string}"
+      puts "CHECK: #{cert.public_key.verify(signature_algorithm.new, signature, canon_string)}"
+      
       unless cert.public_key.verify(signature_algorithm.new, signature, canon_string)
         return soft ? false : (raise Onelogin::Saml::ValidationError.new("Key validation error"))
       end
