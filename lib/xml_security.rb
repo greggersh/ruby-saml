@@ -252,8 +252,7 @@ module XMLSecurity
       # verify signature
       signed_info_element = REXML::XPath.first(
         @sig_element,
-        "//ds:SignedInfo",
-        {"ds"=>DSIG}
+        "//ds:SignedInfo"
       )
       noko_sig_element = document.at_xpath('//ds:Signature', 'ds' => DSIG)
       noko_signed_info_element = noko_sig_element.at_xpath('./ds:SignedInfo', 'ds' => DSIG)
@@ -298,8 +297,7 @@ module XMLSecurity
 
       base64_signature = REXML::XPath.first(
         @sig_element,
-        "//ds:SignatureValue",
-        {"ds" => DSIG}
+        "//ds:SignatureValue"
       ).text
 
       signature = Base64.decode64(base64_signature)
